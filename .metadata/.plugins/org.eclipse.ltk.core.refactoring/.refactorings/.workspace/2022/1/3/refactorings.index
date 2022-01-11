@@ -1,0 +1,6 @@
+1641891593453	Delete resource 'Accelerometer/Drivers/lsm303dlhc'
+1641891982260	Delete resource 'Accelerometer/Core/Src/main.c'
+1641891989012	Delete resource 'Accelerometer/Core/Src/stm32f3xx_it.c'
+1641891994335	Delete resource 'Accelerometer/Core/Src/system_stm32f3xx.c'
+1641892219272	Delete 3 resources
+1641893416381	Delete resource 'Accelerometer/Drivers/BSP/Components/i3g4250d'
