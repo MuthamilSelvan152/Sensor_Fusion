@@ -21,6 +21,7 @@
 #include "main.h"
 #include "i2c.h"
 #include "spi.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -47,8 +48,8 @@
 /* USER CODE BEGIN PV */
 uint8_t DemoIndex = 0;
 BSP_DemoTypedef  BSP_examples[]={
- // {ACCELERO_MEMS_Test, "LSM303DLHC/LSM303AGR", 0},
-  {GYRO_MEMS_Test, "L3GD20/I3G4250D", 0},
+  {ACCELERO_MEMS_Test, "LSM303DLHC/LSM303AGR", 0},
+  {GYRO_MEMS_Test, "L3GD20/I3G4250D", 1},
 };
 
 __IO uint8_t UserPressButton = 0;
@@ -56,6 +57,7 @@ __IO uint8_t UserPressButton = 0;
 /* Counter for User button presses*/
 __IO uint32_t PressCount = 0;
 
+unsigned char *data = "Hello\r\n";
 
 /* USER CODE END PV */
 
@@ -101,6 +103,7 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C1_Init();
   MX_SPI1_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
   BSP_LED_Init(LED4);
@@ -126,6 +129,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  //HAL_UART_Transmit(&huart1,data,7,HAL_MAX_DELAY);
+
 	  UserPressButton = 0;
 	  BSP_examples[DemoIndex++].DemoFunc();
 
@@ -185,7 +190,8 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_I2C1;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_I2C1;
+  PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK2;
   PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_HSI;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
@@ -234,6 +240,12 @@ void Toggle_Leds(void)
     HAL_Delay(100);
 }
 
+
+int __io_putchar(int ch)
+{
+	HAL_UART_Transmit(&huart1 , (uint8_t *)&ch , 1 , 0xFFFF);
+	return ch;
+}
 
 /* USER CODE END 4 */
 

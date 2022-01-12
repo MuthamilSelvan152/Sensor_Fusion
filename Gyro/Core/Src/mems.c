@@ -70,7 +70,12 @@ static void ACCELERO_ReadAcc(void)
   /* Update autoreload and capture compare registers value*/
   xval = buffer[0];
   yval = buffer[1];
-    
+
+  //printf("x: %6d \t y: %6d \t z: %6d \r\n",buffer[0],buffer[1],buffer[2]);
+  printf("x: %.3f g \t y: %.3f g \t z: %.3f g \r\n",
+		  0.061035*buffer[0]/1000, 0.061035*buffer[1]/1000, 0.061035*buffer[2]/1000);
+  HAL_Delay(500);
+
   if((ABS(xval))>(ABS(yval)))
   {
     if(xval > ThresholdHigh)

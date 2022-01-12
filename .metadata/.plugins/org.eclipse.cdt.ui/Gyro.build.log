@@ -1,14 +1,14 @@
-10:28:19 **** Incremental Build of configuration Debug for project Gyro ****
+16:45:56 **** Incremental Build of configuration Debug for project Gyro ****
 make -j4 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I"D:/Workspace/Sensor_Fusion/Sensor_Fusion/Gyro/BSP/STM32F3-Discovery" -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-g++ -o "Gyro.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workspace\Sensor_Fusion\Sensor_Fusion\Gyro\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Gyro.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+arm-none-eabi-gcc "../Core/Src/mems.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I"D:/Workspace/Sensor_Fusion/Sensor_Fusion/Gyro/BSP/STM32F3-Discovery" -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/mems.d" -MT"Core/Src/mems.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mems.o"
+arm-none-eabi-g++ -o "Gyro.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workspace\Sensor_Fusion\Sensor_Fusion\Gyro\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Gyro.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 Finished building target: Gyro.elf
  
 arm-none-eabi-size   Gyro.elf 
 arm-none-eabi-objdump -h -S  Gyro.elf  > "Gyro.list"
 arm-none-eabi-objcopy  -O binary  Gyro.elf  "Gyro.bin"
    text	   data	    bss	    dec	    hex	filename
-  22452	    332	   1932	  24716	   608c	Gyro.elf
+  40336	    860	   2092	  43288	   a918	Gyro.elf
 Finished building: default.size.stdout
  
 Finished building: Gyro.bin
@@ -16,5 +16,5 @@ Finished building: Gyro.bin
 Finished building: Gyro.list
  
 
-10:28:20 Build Finished. 0 errors, 0 warnings. (took 916ms)
+16:45:57 Build Finished. 0 errors, 0 warnings. (took 1s.14ms)
 

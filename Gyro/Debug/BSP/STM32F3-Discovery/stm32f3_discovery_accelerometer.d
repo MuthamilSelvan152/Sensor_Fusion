@@ -30,6 +30,8 @@ BSP/STM32F3-Discovery/stm32f3_discovery_accelerometer.o: \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi_ex.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h \
  ../BSP/STM32F3-Discovery/../Components/lsm303dlhc/lsm303dlhc.h \
  ../BSP/STM32F3-Discovery/../Components/lsm303dlhc/../Common/accelero.h \
  ../BSP/STM32F3-Discovery/../Components/lsm303agr/lsm303agr.h \
@@ -94,6 +96,10 @@ BSP/STM32F3-Discovery/stm32f3_discovery_accelerometer.o: \
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi.h:
 
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi_ex.h:
+
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h:
+
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h:
 
 ../BSP/STM32F3-Discovery/../Components/lsm303dlhc/lsm303dlhc.h:
 
