@@ -1,2 +1,3 @@
 mems.c:48:6:ACCELERO_MEMS_Test	8	static
 mems.c:64:13:ACCELERO_ReadAcc	24	static
+mems.c:151:6:GYRO_MEMS_Test	8	static

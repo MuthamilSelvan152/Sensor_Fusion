@@ -35,9 +35,11 @@ Core/Startup \
 Drivers/BSP/Components/hx8347d \
 Drivers/BSP/Components/hx8347g \
 Drivers/BSP/Components/hx8347i \
+Drivers/BSP/Components/i3g4250d \
 Drivers/BSP/Components/ili9320 \
 Drivers/BSP/Components/ili9325 \
 Drivers/BSP/Components/ili9328 \
+Drivers/BSP/Components/l3gd20 \
 Drivers/BSP/Components/lsm303agr \
 Drivers/BSP/Components/lsm303dlhc \
 Drivers/BSP/Components/spfd5408 \

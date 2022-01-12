@@ -148,6 +148,23 @@ static void ACCELERO_ReadAcc(void)
   * @retval None
   */
 
+void GYRO_MEMS_Test(void)
+{
+  /* Init Accelerometer Mems */
+  if(BSP_ACCELERO_Init() != HAL_OK)
+  {
+    /* Initialization Error */
+    Error_Handler();
+  }
+
+  UserPressButton = 0;
+  while(!UserPressButton)
+  {
+    //GYRO_ReadAng();
+  }
+}
+
+
 
 /**
   * @}

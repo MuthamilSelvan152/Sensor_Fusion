@@ -89,7 +89,7 @@
 					<fileInfo id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.debug.1188280589.355956153" name="stm32f3_discovery_gyroscope.h" rcbsApplicability="disable" resourcePath="Drivers/BSP/STM32F3-Discovery/stm32f3_discovery_gyroscope.h" toolsToInvoke=""/>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
-						<entry excluding="BSP/Components/cs43l22|BSP/Components/cs42l52|BSP/STM32F3-Discovery/stm32f3_discovery_gyroscope.h|BSP/STM32F3-Discovery/stm32f3_discovery_gyroscope.c|BSP/Components/l3gd20|BSP/Components/i3g4250d" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
+						<entry excluding="BSP/Components/cs43l22|BSP/Components/cs42l52|BSP/STM32F3-Discovery/stm32f3_discovery_gyroscope.h|BSP/STM32F3-Discovery/stm32f3_discovery_gyroscope.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -204,5 +204,12 @@
 			<autodiscovery enabled="false" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
 	</storageModule>
-	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/Accelerometer"/>
+		</configuration>
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/Accelerometer"/>
+		</configuration>
+	</storageModule>
 </cproject>

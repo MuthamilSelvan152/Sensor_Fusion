@@ -1,5 +1,5 @@
 Core/Src/mems.o: ../Core/Src/mems.c ../Core/Inc/mems.h ../Core/Inc/main.h \
- D:/Workspace/Sensor_Fusion/Accelerometer/Drivers/BSP/STM32F3-Discovery/stm32f3_discovery.h \
+ D:/Workspace/Sensor_Fusion/Sensor_Fusion/Accelerometer/Drivers/BSP/STM32F3-Discovery/stm32f3_discovery.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h \
  ../Core/Inc/stm32f3xx_hal_conf.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc.h \
@@ -26,24 +26,24 @@ Core/Src/mems.o: ../Core/Src/mems.c ../Core/Inc/mems.h ../Core/Inc/main.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c_ex.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h \
- D:/Workspace/Sensor_Fusion/Accelerometer/Drivers/BSP/STM32F3-Discovery/stm32f3_discovery_gyroscope.h \
- D:/Workspace/Sensor_Fusion/Accelerometer/Drivers/BSP/STM32F3-Discovery/stm32f3_discovery.h \
- d:\workspace\sensor_fusion\accelerometer\drivers\bsp\components\l3gd20\l3gd20.h \
- d:\workspace\sensor_fusion\accelerometer\drivers\bsp\components\common\gyro.h \
- d:\workspace\sensor_fusion\accelerometer\drivers\bsp\components\i3g4250d\i3g4250d.h \
- d:\workspace\sensor_fusion\accelerometer\drivers\bsp\components\common\gyro.h \
- D:/Workspace/Sensor_Fusion/Accelerometer/Drivers/BSP/STM32F3-Discovery/stm32f3_discovery_accelerometer.h \
- d:\workspace\sensor_fusion\accelerometer\drivers\bsp\components\lsm303dlhc\lsm303dlhc.h \
- d:\workspace\sensor_fusion\accelerometer\drivers\bsp\components\common\accelero.h \
- d:\workspace\sensor_fusion\accelerometer\drivers\bsp\components\lsm303agr\lsm303agr.h \
- d:\workspace\sensor_fusion\accelerometer\drivers\bsp\components\common\accelero.h \
+ D:/Workspace/Sensor_Fusion/Sensor_Fusion/Accelerometer/Drivers/BSP/STM32F3-Discovery/stm32f3_discovery_gyroscope.h \
+ D:/Workspace/Sensor_Fusion/Sensor_Fusion/Accelerometer/Drivers/BSP/STM32F3-Discovery/stm32f3_discovery.h \
+ d:\workspace\sensor_fusion\sensor_fusion\accelerometer\drivers\bsp\components\l3gd20\l3gd20.h \
+ d:\workspace\sensor_fusion\sensor_fusion\accelerometer\drivers\bsp\components\common\gyro.h \
+ d:\workspace\sensor_fusion\sensor_fusion\accelerometer\drivers\bsp\components\i3g4250d\i3g4250d.h \
+ d:\workspace\sensor_fusion\sensor_fusion\accelerometer\drivers\bsp\components\common\gyro.h \
+ D:/Workspace/Sensor_Fusion/Sensor_Fusion/Accelerometer/Drivers/BSP/STM32F3-Discovery/stm32f3_discovery_accelerometer.h \
+ d:\workspace\sensor_fusion\sensor_fusion\accelerometer\drivers\bsp\components\lsm303dlhc\lsm303dlhc.h \
+ d:\workspace\sensor_fusion\sensor_fusion\accelerometer\drivers\bsp\components\common\accelero.h \
+ d:\workspace\sensor_fusion\sensor_fusion\accelerometer\drivers\bsp\components\lsm303agr\lsm303agr.h \
+ d:\workspace\sensor_fusion\sensor_fusion\accelerometer\drivers\bsp\components\common\accelero.h \
  ../Core/Inc/mems.h
 
 ../Core/Inc/mems.h:
 
 ../Core/Inc/main.h:
 
-D:/Workspace/Sensor_Fusion/Accelerometer/Drivers/BSP/STM32F3-Discovery/stm32f3_discovery.h:
+D:/Workspace/Sensor_Fusion/Sensor_Fusion/Accelerometer/Drivers/BSP/STM32F3-Discovery/stm32f3_discovery.h:
 
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:
 
@@ -97,26 +97,26 @@ D:/Workspace/Sensor_Fusion/Accelerometer/Drivers/BSP/STM32F3-Discovery/stm32f3_d
 
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h:
 
-D:/Workspace/Sensor_Fusion/Accelerometer/Drivers/BSP/STM32F3-Discovery/stm32f3_discovery_gyroscope.h:
+D:/Workspace/Sensor_Fusion/Sensor_Fusion/Accelerometer/Drivers/BSP/STM32F3-Discovery/stm32f3_discovery_gyroscope.h:
 
-D:/Workspace/Sensor_Fusion/Accelerometer/Drivers/BSP/STM32F3-Discovery/stm32f3_discovery.h:
+D:/Workspace/Sensor_Fusion/Sensor_Fusion/Accelerometer/Drivers/BSP/STM32F3-Discovery/stm32f3_discovery.h:
 
-d:\workspace\sensor_fusion\accelerometer\drivers\bsp\components\l3gd20\l3gd20.h:
+d:\workspace\sensor_fusion\sensor_fusion\accelerometer\drivers\bsp\components\l3gd20\l3gd20.h:
 
-d:\workspace\sensor_fusion\accelerometer\drivers\bsp\components\common\gyro.h:
+d:\workspace\sensor_fusion\sensor_fusion\accelerometer\drivers\bsp\components\common\gyro.h:
 
-d:\workspace\sensor_fusion\accelerometer\drivers\bsp\components\i3g4250d\i3g4250d.h:
+d:\workspace\sensor_fusion\sensor_fusion\accelerometer\drivers\bsp\components\i3g4250d\i3g4250d.h:
 
-d:\workspace\sensor_fusion\accelerometer\drivers\bsp\components\common\gyro.h:
+d:\workspace\sensor_fusion\sensor_fusion\accelerometer\drivers\bsp\components\common\gyro.h:
 
-D:/Workspace/Sensor_Fusion/Accelerometer/Drivers/BSP/STM32F3-Discovery/stm32f3_discovery_accelerometer.h:
+D:/Workspace/Sensor_Fusion/Sensor_Fusion/Accelerometer/Drivers/BSP/STM32F3-Discovery/stm32f3_discovery_accelerometer.h:
 
-d:\workspace\sensor_fusion\accelerometer\drivers\bsp\components\lsm303dlhc\lsm303dlhc.h:
+d:\workspace\sensor_fusion\sensor_fusion\accelerometer\drivers\bsp\components\lsm303dlhc\lsm303dlhc.h:
 
-d:\workspace\sensor_fusion\accelerometer\drivers\bsp\components\common\accelero.h:
+d:\workspace\sensor_fusion\sensor_fusion\accelerometer\drivers\bsp\components\common\accelero.h:
 
-d:\workspace\sensor_fusion\accelerometer\drivers\bsp\components\lsm303agr\lsm303agr.h:
+d:\workspace\sensor_fusion\sensor_fusion\accelerometer\drivers\bsp\components\lsm303agr\lsm303agr.h:
 
-d:\workspace\sensor_fusion\accelerometer\drivers\bsp\components\common\accelero.h:
+d:\workspace\sensor_fusion\sensor_fusion\accelerometer\drivers\bsp\components\common\accelero.h:
 
 ../Core/Inc/mems.h:

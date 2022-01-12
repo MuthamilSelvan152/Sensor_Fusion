@@ -17,9 +17,11 @@ RM := rm -rf
 -include Drivers/BSP/Components/spfd5408/subdir.mk
 -include Drivers/BSP/Components/lsm303dlhc/subdir.mk
 -include Drivers/BSP/Components/lsm303agr/subdir.mk
+-include Drivers/BSP/Components/l3gd20/subdir.mk
 -include Drivers/BSP/Components/ili9328/subdir.mk
 -include Drivers/BSP/Components/ili9325/subdir.mk
 -include Drivers/BSP/Components/ili9320/subdir.mk
+-include Drivers/BSP/Components/i3g4250d/subdir.mk
 -include Drivers/BSP/Components/hx8347i/subdir.mk
 -include Drivers/BSP/Components/hx8347g/subdir.mk
 -include Drivers/BSP/Components/hx8347d/subdir.mk
@@ -89,8 +91,8 @@ all: main-build
 main-build: Accelerometer.elf secondary-outputs
 
 # Tool invocations
-Accelerometer.elf: $(OBJS) $(USER_OBJS) D:\Workspace\Sensor_Fusion\Accelerometer\STM32F303VCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "Accelerometer.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Workspace\Sensor_Fusion\Accelerometer\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Accelerometer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Accelerometer.elf: $(OBJS) $(USER_OBJS) D:\Workspace\Sensor_Fusion\Sensor_Fusion\Accelerometer\STM32F303VCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "Accelerometer.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Workspace\Sensor_Fusion\Sensor_Fusion\Accelerometer\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Accelerometer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
