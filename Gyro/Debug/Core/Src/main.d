@@ -43,7 +43,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  d:\workspace\sensor_fusion\sensor_fusion\gyro\bsp\components\common\accelero.h \
  ../Core/Inc/mems.h ../Core/Inc/main.h ../Core/Inc/i2c.h \
  ../Core/Inc/spi.h ../Core/Inc/usart.h ../Core/Inc/gpio.h \
- ../Core/Inc/RCFilter.h ../Core/Inc/FIRFilter.h
+ ../Core/Inc/RCFilter.h ../Core/Inc/FIRFilter.h ../Core/Inc/IIRFilter.h
 
 ../Core/Inc/main.h:
 
@@ -146,3 +146,5 @@ d:\workspace\sensor_fusion\sensor_fusion\gyro\bsp\components\common\accelero.h:
 ../Core/Inc/RCFilter.h:
 
 ../Core/Inc/FIRFilter.h:
+
+../Core/Inc/IIRFilter.h:

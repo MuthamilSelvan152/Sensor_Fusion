@@ -28,6 +28,7 @@
 /* USER CODE BEGIN Includes */
 #include "RCFilter.h"
 #include "FIRFilter.h"
+#include "IIRFilter.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -37,6 +38,9 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define IIR_ALPHA	1.2f
+#define IIR_BETA	0.2f
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -62,6 +66,7 @@ RCFilter Acc_RC_LPF;
 RCFilter Gyro_RC_LPF;
 
 FIRFilter Acc_FIR_LPF;
+IIRFilter Acc_IIR_LPF;
 
 /* USER CODE END PV */
 
@@ -131,6 +136,8 @@ int main(void)
   RCFilter_Init(&Acc_RC_LPF, 5.0f, 0.01f);
 
   FIRFilter_Init(&Acc_FIR_LPF);
+
+  IIRFilter_Init(&Acc_IIR_LPF, IIR_ALPHA, IIR_BETA);
 
   /* USER CODE END 2 */
 

@@ -22,6 +22,7 @@
 
 #include "RCFilter.h"
 #include "FIRFilter.h"
+#include "IIRFilter.h"
 
 /** @addtogroup BSP_Examples
   * @{
@@ -34,6 +35,7 @@
 extern __IO uint8_t UserPressButton;
 extern RCFilter Acc_RC_LPF;
 extern FIRFilter Acc_FIR_LPF;
+extern IIRFilter Acc_IIR_LPF;;
 /* Init af threahold to detect acceleration on MEMS */
 int16_t ThresholdHigh = 1000;
 int16_t ThresholdLow = -1000;
@@ -80,14 +82,14 @@ static void ACCELERO_ReadAcc(void)
   //printf("x: %.3f m/s^2 \t y: %.3f m/s^2 \t z: %.3f m/s^2 \r\n",
 		  //0.061035*buffer[0]*9.81/1000, 0.061035*buffer[1]*9.81/1000, 0.061035*buffer[2]*9.81/1000);
 
-  RCFilter_Update(&Acc_RC_LPF,xval);
-  FIRFilter_Update(&Acc_FIR_LPF, xval);
-
+ // RCFilter_Update(&Acc_RC_LPF,xval);
+ // FIRFilter_Update(&Acc_FIR_LPF, xval);
+  IIRFilter_Update(&Acc_IIR_LPF, xval);
   //printf(" %.3f, %.3f , %.3f \r\n",
   		 // 0.061035*buffer[0]*9.81/1000, 0.061035*buffer[1]*9.81/1000, 0.061035*buffer[2]*9.81/1000);
 
   printf(" %.3f, %.3f\r\n",
-    		  0.061035*buffer[0]*9.81/1000, 0.061035*Acc_RC_LPF.out[0]*9.81/1000);
+    		  0.061035*buffer[0]*9.81/1000, 0.061035*Acc_IIR_LPF.out*9.81/1000);
 
 
   //HAL_Delay(500);
