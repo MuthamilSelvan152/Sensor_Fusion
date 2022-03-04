@@ -41,7 +41,7 @@ Core/Src/mems.o: ../Core/Src/mems.c ../Core/Inc/mems.h ../Core/Inc/main.h \
  d:\workspace\sensor_fusion\sensor_fusion\gyro\bsp\components\common\accelero.h \
  d:\workspace\sensor_fusion\sensor_fusion\gyro\bsp\components\lsm303agr\lsm303agr.h \
  d:\workspace\sensor_fusion\sensor_fusion\gyro\bsp\components\common\accelero.h \
- ../Core/Inc/mems.h
+ ../Core/Inc/mems.h ../Core/Inc/RCFilter.h ../Core/Inc/FIRFilter.h
 
 ../Core/Inc/mems.h:
 
@@ -132,3 +132,7 @@ d:\workspace\sensor_fusion\sensor_fusion\gyro\bsp\components\lsm303agr\lsm303agr
 d:\workspace\sensor_fusion\sensor_fusion\gyro\bsp\components\common\accelero.h:
 
 ../Core/Inc/mems.h:
+
+../Core/Inc/RCFilter.h:
+
+../Core/Inc/FIRFilter.h:

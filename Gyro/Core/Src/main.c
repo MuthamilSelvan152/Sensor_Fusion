@@ -26,7 +26,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "RCFilter.h"
+#include "FIRFilter.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,7 +58,10 @@ __IO uint8_t UserPressButton = 0;
 /* Counter for User button presses*/
 __IO uint32_t PressCount = 0;
 
-unsigned char *data = "Hello\r\n";
+RCFilter Acc_RC_LPF;
+RCFilter Gyro_RC_LPF;
+
+FIRFilter Acc_FIR_LPF;
 
 /* USER CODE END PV */
 
@@ -122,6 +126,11 @@ int main(void)
   BSP_LED_Off(LED4);
   BSP_LED_Off(LED5);
   BSP_LED_Off(LED6);
+
+  /* Initialize RC Filters */
+  RCFilter_Init(&Acc_RC_LPF, 5.0f, 0.01f);
+
+  FIRFilter_Init(&Acc_FIR_LPF);
 
   /* USER CODE END 2 */
 

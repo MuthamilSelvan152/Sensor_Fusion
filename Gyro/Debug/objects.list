@@ -16,6 +16,8 @@
 "./BSP/STM32F3-Discovery/stm32f3_discovery.o"
 "./BSP/STM32F3-Discovery/stm32f3_discovery_accelerometer.o"
 "./BSP/STM32F3-Discovery/stm32f3_discovery_gyroscope.o"
+"./Core/Src/FIRFilter.o"
+"./Core/Src/RCFilter.o"
 "./Core/Src/gpio.o"
 "./Core/Src/i2c.o"
 "./Core/Src/main.o"

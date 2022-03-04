@@ -119,7 +119,7 @@ uint8_t BSP_GYRO_Init(void)
     Gyro_InitStructure.Band_Width       = L3GD20_BANDWIDTH_4;
     Gyro_InitStructure.BlockData_Update = L3GD20_BlockDataUpdate_Continous;
     Gyro_InitStructure.Endianness       = L3GD20_BLE_LSB;
-    Gyro_InitStructure.Full_Scale       = L3GD20_FULLSCALE_500;
+    Gyro_InitStructure.Full_Scale       = L3GD20_FULLSCALE_250;
 
     /* Configure MEMS: data rate, power mode, full scale and axes */
     ctrl = (uint16_t) (Gyro_InitStructure.Power_Mode  | Gyro_InitStructure.Output_DataRate | \
@@ -131,8 +131,8 @@ uint8_t BSP_GYRO_Init(void)
     /* Initialize the gyroscope */
     GyroscopeDrv->Init(ctrl);
 
-    Gyro_FilterStructure.HighPassFilter_Mode_Selection   = L3GD20_HPM_NORMAL_MODE_RES;
-    Gyro_FilterStructure.HighPassFilter_CutOff_Frequency = L3GD20_HPFCF_0;
+    Gyro_FilterStructure.HighPassFilter_Mode_Selection   = L3GD20_HPM_NORMAL_MODE;
+    Gyro_FilterStructure.HighPassFilter_CutOff_Frequency = L3GD20_HPFCF_9;
 
     ctrl = (uint8_t) ((Gyro_FilterStructure.HighPassFilter_Mode_Selection |\
                        Gyro_FilterStructure.HighPassFilter_CutOff_Frequency));
