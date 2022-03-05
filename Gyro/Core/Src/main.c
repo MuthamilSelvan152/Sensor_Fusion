@@ -29,6 +29,10 @@
 #include "RCFilter.h"
 #include "FIRFilter.h"
 #include "IIRFilter.h"
+#include <math.h>
+
+#include "FirstOrderIIRFilter.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -38,9 +42,13 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define IIR_ALPHA	1.2f
-#define IIR_BETA	0.2f
+#define SAMPLE_TIME_FILTER_MS	10
+#define SIN_FREQ_HZ				1.59f
 
+#define IIR_ALPHA	1.0f
+#define IIR_BETA	0.9f
+
+#define FO_IIR_ALPHA	0.9f
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -59,6 +67,8 @@ BSP_DemoTypedef  BSP_examples[]={
 
 __IO uint8_t UserPressButton = 0;
 
+float filterInput = 0;
+uint32_t timerFILTER_MS = 0;
 /* Counter for User button presses*/
 __IO uint32_t PressCount = 0;
 
@@ -67,13 +77,14 @@ RCFilter Gyro_RC_LPF;
 
 FIRFilter Acc_FIR_LPF;
 IIRFilter Acc_IIR_LPF;
+FirstOrderIIR Acc_FO_IIR;
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
+void IIR_Check();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -139,6 +150,8 @@ int main(void)
 
   IIRFilter_Init(&Acc_IIR_LPF, IIR_ALPHA, IIR_BETA);
 
+  FirstOrderIIR_Init(&Acc_FO_IIR, FO_IIR_ALPHA);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -157,7 +170,7 @@ int main(void)
 	  }
 	  /* Toggle LEDs between each Test */
 	  UserPressButton = 0;
-	  while (!UserPressButton) Toggle_Leds();
+	  while (!UserPressButton) IIR_Check(); //	Toggle_Leds();
 	  BSP_LED_Off(LED3);
 	  BSP_LED_Off(LED4);
 	  BSP_LED_Off(LED5);
@@ -256,6 +269,22 @@ void Toggle_Leds(void)
     HAL_Delay(100);
 }
 
+/* IIR Filter Check */
+void IIR_Check()
+{
+	if((HAL_GetTick() - timerFILTER_MS) >= SAMPLE_TIME_FILTER_MS)
+	{
+		filterInput = 10.0f * sinf(0.0062831853f * SIN_FREQ_HZ * timerFILTER_MS);
+
+		IIRFilter_Update(&Acc_IIR_LPF, filterInput);
+
+		printf(" %.3f, %.3f\r\n",
+				filterInput, Acc_IIR_LPF.out);
+
+		timerFILTER_MS += SAMPLE_TIME_FILTER_MS;
+
+	}
+}
 
 int __io_putchar(int ch)
 {
