@@ -77,8 +77,8 @@ RCFilter Gyro_RC_LPF;
 
 FIRFilter Acc_FIR_LPF;
 IIRFilter Acc_IIR_LPF;
-FirstOrderIIR Acc_FO_IIR;
-
+FirstOrderIIR Acc_FO_IIR[3];
+FirstOrderIIR Gyro_FO_IIR[3];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -150,7 +150,11 @@ int main(void)
 
   IIRFilter_Init(&Acc_IIR_LPF, IIR_ALPHA, IIR_BETA);
 
-  FirstOrderIIR_Init(&Acc_FO_IIR, FO_IIR_ALPHA);
+  for(uint8_t i = 0; i < 3; i++)
+  {
+	  FirstOrderIIR_Init(&Acc_FO_IIR[i], FO_IIR_ALPHA);
+	  FirstOrderIIR_Init(&Gyro_FO_IIR[i], FO_IIR_ALPHA);
+  }
 
   /* USER CODE END 2 */
 

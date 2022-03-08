@@ -24,22 +24,39 @@
 #include "FIRFilter.h"
 #include "IIRFilter.h"
 #include "FirstOrderIIRFilter.h"
+#include <math.h>
 /** @addtogroup BSP_Examples
   * @{
   */ 
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
+#define RAD_TO_DEG (180.0f*7.0f/22.0f)
+#define DEG_TO_RAD (22.0f/(7.0f*180.0f))
+#define SAMPLE_TIME_GYRO	20
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 extern __IO uint8_t UserPressButton;
 extern RCFilter Acc_RC_LPF;
 extern FIRFilter Acc_FIR_LPF;
 extern IIRFilter Acc_IIR_LPF;;
-extern FirstOrderIIR Acc_FO_IIR;
+extern FirstOrderIIR Acc_FO_IIR[3];
+extern FirstOrderIIR Gyro_FO_IIR[3];
 /* Init af threahold to detect acceleration on MEMS */
 int16_t ThresholdHigh = 1000;
 int16_t ThresholdLow = -1000;
+uint32_t GyroTime = 0;
+
+
+/* Gyroscope variable */
+float Buffer[3];
+float p_rps, q_rps, r_rps = 0x00;
+float angRate[3] = {0};
+float pitchAng_Gyro = 0;
+float rollAng_Gyro = 0;
+float pitchAng_dot = 0;
+float rollAng_dot = 0;
+
 /* Private function prototypes -----------------------------------------------*/
 static void ACCELERO_ReadAcc(void);
 static void GYRO_ReadAng(void);
@@ -72,6 +89,10 @@ static void ACCELERO_ReadAcc(void)
   int16_t buffer[3] = {0};
   int16_t xval, yval = 0x00;
   
+  float acc[3] = {0};
+  float pitchAng = 0;
+  float rollAng = 0;
+
   /* Read Acceleration*/
   BSP_ACCELERO_GetXYZ(buffer);
  
@@ -89,12 +110,20 @@ static void ACCELERO_ReadAcc(void)
   //printf(" %.3f, %.3f , %.3f \r\n",
   		 // 0.061035*buffer[0]*9.81/1000, 0.061035*buffer[1]*9.81/1000, 0.061035*buffer[2]*9.81/1000);
 
-  //FirstOrderIIR_Update(&Acc_FO_IIR, buffer[0]);
-  FirstOrderIIR_Update(&Acc_FO_IIR, buffer[1]);
-  //FirstOrderIIR_Update(&Acc_FO_IIR, buffer[2]);
+  for(uint8_t i=0; i<3; i++)
+  {
+	  FirstOrderIIR_Update(&Acc_FO_IIR[i], buffer[i]);
+	  acc[i] = 0.061035*Acc_FO_IIR[i].out*9.81/1000;
+  }
 
-  printf(" %.3f, %.3f\r\n", 0.061035*buffer[1]*9.81/1000, 0.061035*Acc_FO_IIR.out*9.81/1000);
+  /* Pitch Ang = asin(Ax / g) */
+  pitchAng = asinf(acc[0] / 9.81) * RAD_TO_DEG;
 
+  /* Roll Ang = atan(Ay / Az) */
+  rollAng = atanf(acc[1] / acc[2]) * RAD_TO_DEG;
+
+  //printf(" %.3f, %.3f, %.3f", acc[0], acc[1], acc[2]);
+  printf(" %.3f, %.3f\r\n", pitchAng, rollAng);
 
   //HAL_Delay(500);
 
@@ -172,76 +201,44 @@ void GYRO_MEMS_Test(void)
 
 static void GYRO_ReadAng(void)
 {
-  /* Gyroscope variable */
-  float Buffer[3];
-  float Xval,Yval,Zval = 0x00;
-
-  /* Init Gyroscope Mems */
-  if(BSP_GYRO_Init() != HAL_OK)
+  if((HAL_GetTick() - GyroTime) >= SAMPLE_TIME_GYRO)
   {
-    /* Initialization Error */
-    Error_Handler(); 
-  }
 
-  /* Read Gyro Angular data */
-  BSP_GYRO_GetXYZ(Buffer);
-     
-  /* Update autoreload and capture compare registers value*/
-  Xval = Buffer[0];
-  Yval = Buffer[1];
-  Zval = Buffer[2];
-  /* dps */
-  printf("%.3f, %.3f, %.3f \r\n",
-		  L3GD20_SENSITIVITY_250DPS*Xval/1000, L3GD20_SENSITIVITY_250DPS*Yval/1000,
-		  L3GD20_SENSITIVITY_250DPS*Zval/1000);
-  HAL_Delay(20);
-      
-  if(Xval>Yval)
-   {
-    if(Buffer[0] > 5000.0f)
-     { 
-        /* LD10 On */
-        BSP_LED_On(LED10);
-        HAL_Delay(10);
-     }
-     else if(Buffer[0] < -5000.0f)
-     { 
-        /* LED3 On */
-        BSP_LED_On(LED3);
-        HAL_Delay(10);
-     }      
-    else
-    { 
-      HAL_Delay(10);
-    }
-   }
-  else
-   {
-    if(Buffer[1] < -5000.0f)
-     {
-        /* LD6 on */
-        BSP_LED_On(LED6);           
-        HAL_Delay(10);
-     }
-    else if(Buffer[1] > 5000.0f)
-     {
-        /* LD7 On */
-        BSP_LED_On(LED7);        
-	HAL_Delay(10);
-     }     
-        else
-        { 
-            HAL_Delay(10);
-        }  	
-      } 
-    BSP_LED_Off(LED3);
-    BSP_LED_Off(LED6);
-    BSP_LED_Off(LED7);
-    BSP_LED_Off(LED4);
-    BSP_LED_Off(LED10);
-    BSP_LED_Off(LED8);
-    BSP_LED_Off(LED9);
-    BSP_LED_Off(LED5);
+	  /* Init Gyroscope Mems */
+	  if(BSP_GYRO_Init() != HAL_OK)
+	  {
+		/* Initialization Error */
+		Error_Handler();
+	  }
+
+	  /* Read Gyro Angular data */
+	  BSP_GYRO_GetXYZ(Buffer);
+
+	  /* Update autoreload and capture compare registers value*/
+
+	  /* dps */
+
+	  for(uint8_t i=0; i<3; i++)
+	  {
+		  FirstOrderIIR_Update(&Gyro_FO_IIR[i], Buffer[i]);
+		  angRate[i] = DEG_TO_RAD * L3GD20_SENSITIVITY_250DPS*Gyro_FO_IIR[i].out/1000;
+	  }
+
+	  //printf("%.3f, %.3f, %.3f \r\n",angRate[0],angRate[1],angRate[2]);
+	  //printf("%.3f, %.3f, %.3f \r\n",
+			  //L3GD20_SENSITIVITY_250DPS*Xval/1000, L3GD20_SENSITIVITY_250DPS*Yval/1000,
+			 // L3GD20_SENSITIVITY_250DPS*Zval/1000);
+	  /* Body rates to Euler Rates */
+	  pitchAng_dot = angRate[0] + tanf(pitchAng_Gyro) * (sinf(rollAng_Gyro) * angRate[1] + cosf(rollAng_Gyro) * angRate[2]);
+	  rollAng_dot =	cosf(rollAng_Gyro) * angRate[1] - sinf(rollAng_Gyro) * angRate[2];
+
+	  pitchAng_Gyro = pitchAng_Gyro + (SAMPLE_TIME_GYRO / 1000.0f) * pitchAng_dot;
+	  rollAng_Gyro = rollAng_Gyro + (SAMPLE_TIME_GYRO / 1000.0f) * rollAng_dot;
+
+	  printf(" %.3f, %.3f\r\n", pitchAng_Gyro * RAD_TO_DEG, rollAng_Gyro * RAD_TO_DEG);
+
+	  GyroTime = HAL_GetTick();
+  }
 }
 /**
   * @}
