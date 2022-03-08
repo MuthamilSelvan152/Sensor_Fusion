@@ -29,18 +29,18 @@ Core/Src/spi.o: ../Core/Src/spi.c ../Core/Inc/spi.h ../Core/Inc/main.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi_ex.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h \
- D:/Workspace/Sensor_Fusion/Sensor_Fusion/Complementary_Filter/BSP/STM32F3-Discovery/stm32f3_discovery.h \
- D:/Workspace/Sensor_Fusion/Sensor_Fusion/Complementary_Filter/BSP/STM32F3-Discovery/stm32f3_discovery_gyroscope.h \
- D:/Workspace/Sensor_Fusion/Sensor_Fusion/Complementary_Filter/BSP/STM32F3-Discovery/stm32f3_discovery.h \
- d:\workspace\sensor_fusion\sensor_fusion\complementary_filter\bsp\components\l3gd20\l3gd20.h \
- d:\workspace\sensor_fusion\sensor_fusion\complementary_filter\bsp\components\common\gyro.h \
- d:\workspace\sensor_fusion\sensor_fusion\complementary_filter\bsp\components\i3g4250d\i3g4250d.h \
- d:\workspace\sensor_fusion\sensor_fusion\complementary_filter\bsp\components\common\gyro.h \
- D:/Workspace/Sensor_Fusion/Sensor_Fusion/Complementary_Filter/BSP/STM32F3-Discovery/stm32f3_discovery_accelerometer.h \
- d:\workspace\sensor_fusion\sensor_fusion\complementary_filter\bsp\components\lsm303dlhc\lsm303dlhc.h \
- d:\workspace\sensor_fusion\sensor_fusion\complementary_filter\bsp\components\common\accelero.h \
- d:\workspace\sensor_fusion\sensor_fusion\complementary_filter\bsp\components\lsm303agr\lsm303agr.h \
- d:\workspace\sensor_fusion\sensor_fusion\complementary_filter\bsp\components\common\accelero.h \
+ C:/Users/user/Desktop/STM32/Sensor_Fusion/Complementary_Filter/BSP/STM32F3-Discovery/stm32f3_discovery.h \
+ C:/Users/user/Desktop/STM32/Sensor_Fusion/Complementary_Filter/BSP/STM32F3-Discovery/stm32f3_discovery_gyroscope.h \
+ C:/Users/user/Desktop/STM32/Sensor_Fusion/Complementary_Filter/BSP/STM32F3-Discovery/stm32f3_discovery.h \
+ c:\users\user\desktop\stm32\sensor_fusion\complementary_filter\bsp\components\l3gd20\l3gd20.h \
+ c:\users\user\desktop\stm32\sensor_fusion\complementary_filter\bsp\components\common\gyro.h \
+ c:\users\user\desktop\stm32\sensor_fusion\complementary_filter\bsp\components\i3g4250d\i3g4250d.h \
+ c:\users\user\desktop\stm32\sensor_fusion\complementary_filter\bsp\components\common\gyro.h \
+ C:/Users/user/Desktop/STM32/Sensor_Fusion/Complementary_Filter/BSP/STM32F3-Discovery/stm32f3_discovery_accelerometer.h \
+ c:\users\user\desktop\stm32\sensor_fusion\complementary_filter\bsp\components\lsm303dlhc\lsm303dlhc.h \
+ c:\users\user\desktop\stm32\sensor_fusion\complementary_filter\bsp\components\common\accelero.h \
+ c:\users\user\desktop\stm32\sensor_fusion\complementary_filter\bsp\components\lsm303agr\lsm303agr.h \
+ c:\users\user\desktop\stm32\sensor_fusion\complementary_filter\bsp\components\common\accelero.h \
  ../Core/Inc/mems.h
 
 ../Core/Inc/spi.h:
@@ -107,28 +107,28 @@ Core/Src/spi.o: ../Core/Src/spi.c ../Core/Inc/spi.h ../Core/Inc/main.h \
 
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h:
 
-D:/Workspace/Sensor_Fusion/Sensor_Fusion/Complementary_Filter/BSP/STM32F3-Discovery/stm32f3_discovery.h:
+C:/Users/user/Desktop/STM32/Sensor_Fusion/Complementary_Filter/BSP/STM32F3-Discovery/stm32f3_discovery.h:
 
-D:/Workspace/Sensor_Fusion/Sensor_Fusion/Complementary_Filter/BSP/STM32F3-Discovery/stm32f3_discovery_gyroscope.h:
+C:/Users/user/Desktop/STM32/Sensor_Fusion/Complementary_Filter/BSP/STM32F3-Discovery/stm32f3_discovery_gyroscope.h:
 
-D:/Workspace/Sensor_Fusion/Sensor_Fusion/Complementary_Filter/BSP/STM32F3-Discovery/stm32f3_discovery.h:
+C:/Users/user/Desktop/STM32/Sensor_Fusion/Complementary_Filter/BSP/STM32F3-Discovery/stm32f3_discovery.h:
 
-d:\workspace\sensor_fusion\sensor_fusion\complementary_filter\bsp\components\l3gd20\l3gd20.h:
+c:\users\user\desktop\stm32\sensor_fusion\complementary_filter\bsp\components\l3gd20\l3gd20.h:
 
-d:\workspace\sensor_fusion\sensor_fusion\complementary_filter\bsp\components\common\gyro.h:
+c:\users\user\desktop\stm32\sensor_fusion\complementary_filter\bsp\components\common\gyro.h:
 
-d:\workspace\sensor_fusion\sensor_fusion\complementary_filter\bsp\components\i3g4250d\i3g4250d.h:
+c:\users\user\desktop\stm32\sensor_fusion\complementary_filter\bsp\components\i3g4250d\i3g4250d.h:
 
-d:\workspace\sensor_fusion\sensor_fusion\complementary_filter\bsp\components\common\gyro.h:
+c:\users\user\desktop\stm32\sensor_fusion\complementary_filter\bsp\components\common\gyro.h:
 
-D:/Workspace/Sensor_Fusion/Sensor_Fusion/Complementary_Filter/BSP/STM32F3-Discovery/stm32f3_discovery_accelerometer.h:
+C:/Users/user/Desktop/STM32/Sensor_Fusion/Complementary_Filter/BSP/STM32F3-Discovery/stm32f3_discovery_accelerometer.h:
 
-d:\workspace\sensor_fusion\sensor_fusion\complementary_filter\bsp\components\lsm303dlhc\lsm303dlhc.h:
+c:\users\user\desktop\stm32\sensor_fusion\complementary_filter\bsp\components\lsm303dlhc\lsm303dlhc.h:
 
-d:\workspace\sensor_fusion\sensor_fusion\complementary_filter\bsp\components\common\accelero.h:
+c:\users\user\desktop\stm32\sensor_fusion\complementary_filter\bsp\components\common\accelero.h:
 
-d:\workspace\sensor_fusion\sensor_fusion\complementary_filter\bsp\components\lsm303agr\lsm303agr.h:
+c:\users\user\desktop\stm32\sensor_fusion\complementary_filter\bsp\components\lsm303agr\lsm303agr.h:
 
-d:\workspace\sensor_fusion\sensor_fusion\complementary_filter\bsp\components\common\accelero.h:
+c:\users\user\desktop\stm32\sensor_fusion\complementary_filter\bsp\components\common\accelero.h:
 
 ../Core/Inc/mems.h:

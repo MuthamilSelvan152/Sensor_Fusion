@@ -1,0 +1,20 @@
+23:33:05 **** Incremental Build of configuration Debug for project Complementary_Filter ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I"C:/Users/user/Desktop/STM32/Sensor_Fusion/Complementary_Filter/BSP/STM32F3-Discovery" -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "Complementary_Filter.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\user\Desktop\STM32\Sensor_Fusion\Complementary_Filter\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Complementary_Filter.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: Complementary_Filter.elf
+ 
+arm-none-eabi-size   Complementary_Filter.elf 
+arm-none-eabi-objdump -h -S  Complementary_Filter.elf  > "Complementary_Filter.list"
+arm-none-eabi-objcopy  -O binary  Complementary_Filter.elf  "Complementary_Filter.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44896	    736	   2344	  47976	   bb68	Complementary_Filter.elf
+Finished building: default.size.stdout
+ 
+Finished building: Complementary_Filter.bin
+ 
+Finished building: Complementary_Filter.list
+ 
+
+23:33:08 Build Finished. 0 errors, 0 warnings. (took 2s.847ms)
+

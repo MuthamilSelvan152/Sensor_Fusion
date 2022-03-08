@@ -59,6 +59,13 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+
+Accelerometer myAcc = {0};
+Gyroscope myGyro = {0};
+Complementary_Filter Comp_Filter = {0};
+
+uint32_t sampleTime = 0;
+
 uint8_t DemoIndex = 0;
 BSP_DemoTypedef  BSP_examples[]={
   {ACCELERO_MEMS_Test, "LSM303DLHC/LSM303AGR", 0},
@@ -126,34 +133,28 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  BSP_LED_Init(LED4);
-  BSP_LED_Init(LED3);
-  BSP_LED_Init(LED5);
-  BSP_LED_Init(LED7);
-  BSP_LED_Init(LED9);
-  BSP_LED_Init(LED10);
-  BSP_LED_Init(LED8);
-  BSP_LED_Init(LED6);
-
-  BSP_PB_Init(BUTTON_USER, BUTTON_MODE_EXTI);
-
-  while (!UserPressButton) Toggle_Leds();
-  BSP_LED_Off(LED3);
-  BSP_LED_Off(LED4);
-  BSP_LED_Off(LED5);
-  BSP_LED_Off(LED6);
-
-  /* Initialize RC Filters */
-  RCFilter_Init(&Acc_RC_LPF, 5.0f, 0.01f);
-
-  FIRFilter_Init(&Acc_FIR_LPF);
-
   IIRFilter_Init(&Acc_IIR_LPF, IIR_ALPHA, IIR_BETA);
+
+  Comp_Filter.alpha = 0.05f;
 
   for(uint8_t i = 0; i < 3; i++)
   {
 	  FirstOrderIIR_Init(&Acc_FO_IIR[i], FO_IIR_ALPHA);
 	  FirstOrderIIR_Init(&Gyro_FO_IIR[i], FO_IIR_ALPHA);
+  }
+
+  /* Init Accelerometer Mems */
+  if(BSP_ACCELERO_Init() != HAL_OK)
+  {
+	/* Initialization Error */
+	Error_Handler();
+  }
+
+  /* Init Gyroscope Mems */
+  if(BSP_GYRO_Init() != HAL_OK)
+  {
+	/* Initialization Error */
+	Error_Handler();
   }
 
   /* USER CODE END 2 */
@@ -162,24 +163,68 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  //HAL_UART_Transmit(&huart1,data,7,HAL_MAX_DELAY);
 
-	  UserPressButton = 0;
-	  BSP_examples[DemoIndex++].DemoFunc();
+	  /* Read Acceleration*/
+	  BSP_ACCELERO_GetXYZ(myAcc.buffer);
 
-	  /* If all Demo has been already executed, Reset DemoIndex to restart BSP example*/
-	  if(DemoIndex >= COUNT_OF_EXAMPLE(BSP_examples))
+	  /* Init Gyroscope Mems */
+	  if(BSP_GYRO_Init() != HAL_OK)
 	  {
-		DemoIndex = 0;
+		/* Initialization Error */
+		Error_Handler();
 	  }
-	  /* Toggle LEDs between each Test */
-	  UserPressButton = 0;
-	  while (!UserPressButton) IIR_Check(); //	Toggle_Leds();
-	  BSP_LED_Off(LED3);
-	  BSP_LED_Off(LED4);
-	  BSP_LED_Off(LED5);
-	  BSP_LED_Off(LED6);
 
+	  /* Read Gyro Angular data */
+	  BSP_GYRO_GetXYZ(myGyro.buffer);
+
+	  /* Apply LPF */
+	  for(uint8_t i=0; i<3; i++)
+	   {
+	 	  FirstOrderIIR_Update(&Acc_FO_IIR[i], myAcc.buffer[i]);
+	 	  myAcc.Filt[i] = 0.061035f*Acc_FO_IIR[i].out*G/1000.0f;
+
+	 	  FirstOrderIIR_Update(&Gyro_FO_IIR[i], myGyro.buffer[i]);
+	 	  myGyro.Filt[i] = DEG_TO_RAD * L3GD20_SENSITIVITY_250DPS*Gyro_FO_IIR[i].out/1000;
+	   }
+
+	  if((HAL_GetTick() - sampleTime) >= SAMPLE_TIME)
+	  {
+
+
+		  /* Pitch Ang = asin(Ax / g) */
+		  myAcc.pitch_Theta = asinf(myAcc.Filt[x] / G) ; //* RAD_TO_DEG;
+
+		  /* Roll Ang = atan(Ay / Az) */
+		  myAcc.roll_Phi = atanf(myAcc.Filt[y] / myAcc.Filt[z]);  //* RAD_TO_DEG;
+
+		  //printf(" %.3f, %.3f, %.3f", acc[0], acc[1], acc[2]);
+		  //printf(" %.3f, %.3f\r\n", myAcc.pitch_Theta, myAcc.roll_Phi);
+
+		  /* Body rates to Euler Rates */
+		  myGyro.roll_Phi_dot = myGyro.Filt[x] + tanf(Comp_Filter.pitch_Theta) *
+				  	  	  	  	  (sinf(Comp_Filter.roll_Phi) * myGyro.Filt[y] +
+				  	  	  	  			  cosf(Comp_Filter.roll_Phi) * myGyro.Filt[z]);
+
+		  myGyro.pitch_Theta_dot =	cosf(Comp_Filter.roll_Phi) * myGyro.Filt[y] - sinf(Comp_Filter.roll_Phi) * myGyro.Filt[z];
+
+		  //myGyro.pitch_Theta += (SAMPLE_TIME / 1000.0f) * myGyro.pitch_Theta_dot;
+		  //myGyro.roll_Phi += (SAMPLE_TIME / 1000.0f) * myGyro.roll_Phi_dot;
+
+		  //printf(" %.3f, %.3f\r\n", myGyro.pitch_Theta, myGyro.roll_Phi);
+
+		  Comp_Filter.pitch_Theta = Comp_Filter.alpha * myAcc.pitch_Theta
+				  	  	  	  	  	+ (1.0f - Comp_Filter.alpha) *
+									(Comp_Filter.pitch_Theta + (SAMPLE_TIME / 1000.0f) * myGyro.pitch_Theta_dot); // * RAD_TO_DEG);
+
+		  Comp_Filter.roll_Phi = Comp_Filter.alpha * myAcc.roll_Phi
+		  				  	  	  	+ (1.0f - Comp_Filter.alpha) *
+		  							(Comp_Filter.roll_Phi + (SAMPLE_TIME / 1000.0f) * myGyro.roll_Phi_dot); // * RAD_TO_DEG);
+
+		  printf(" %.3f, %.3f\r\n", Comp_Filter.pitch_Theta * RAD_TO_DEG, Comp_Filter.roll_Phi * RAD_TO_DEG);
+
+		  sampleTime = HAL_GetTick();
+
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

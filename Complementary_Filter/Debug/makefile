@@ -91,8 +91,8 @@ all: main-build
 main-build: Complementary_Filter.elf secondary-outputs
 
 # Tool invocations
-Complementary_Filter.elf: $(OBJS) $(USER_OBJS) D:\Workspace\Sensor_Fusion\Sensor_Fusion\Complementary_Filter\STM32F303VCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "Complementary_Filter.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Workspace\Sensor_Fusion\Sensor_Fusion\Complementary_Filter\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Complementary_Filter.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Complementary_Filter.elf: $(OBJS) $(USER_OBJS) C:\Users\user\Desktop\STM32\Sensor_Fusion\Complementary_Filter\STM32F303VCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "Complementary_Filter.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\user\Desktop\STM32\Sensor_Fusion\Complementary_Filter\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Complementary_Filter.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

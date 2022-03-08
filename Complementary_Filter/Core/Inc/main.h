@@ -48,12 +48,48 @@ typedef struct
   uint32_t DemoIndex;
 }BSP_DemoTypedef;
 
+enum { x, y, z};
+
+typedef struct
+{
+	int16_t buffer[3];
+	float Filt[3];
+
+	float pitch_Theta;
+	float roll_Phi;
+}Accelerometer;
+
+typedef struct
+{
+	float buffer[3];
+	float Filt[3];
+
+	float pitch_Theta;
+	float roll_Phi;
+
+	float pitch_Theta_dot;
+	float roll_Phi_dot;
+}Gyroscope;
+
+typedef struct
+{
+	float alpha;
+
+	float pitch_Theta;
+	float roll_Phi;
+
+}Complementary_Filter;
 
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
 #define COUNT_OF_EXAMPLE(x)    (sizeof(x)/sizeof(BSP_DemoTypedef))
+
+#define G	9.81f
+#define RAD_TO_DEG (180.0f*7.0f/22.0f)
+#define DEG_TO_RAD (22.0f/(7.0f*180.0f))
+#define SAMPLE_TIME			20.0f
 
 /* USER CODE END EC */
 
